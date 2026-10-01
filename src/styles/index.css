@@ -45,3 +45,8 @@ html {
     padding: 0 30px;
   }
 }
+@media (max-width: 360px) {
+  .container {
+    padding: 0 10px;
+  }
+}
