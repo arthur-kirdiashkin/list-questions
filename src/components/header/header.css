@@ -1,0 +1,339 @@
+/* .header {
+  padding: 8px 0;
+  background-color: var(--backColor);
+  margin-bottom: 41px;
+}
+
+.header__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  column-gap: 11px;
+  margin-right: 54px;
+}
+
+.header__list {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 20px;
+  align-self: center;
+}
+
+.header__list a {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  color: #191919;
+}
+
+.header__reg {
+  cursor: pointer;
+  padding: 11.5px 28.5px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 100%;
+  background-color: var(--accentColor);
+  color: white;
+  border-radius: 12px;
+  border: none;
+}
+.header__entr {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 110.00000000000001%;
+  text-align: center;
+  color: var(--accentColor);
+  margin-right: 28px;
+}
+@media (max-width: 768px) {
+  .header__list,
+  .header__buttons {
+    display: none;
+  }
+  .header__tablet-nav {
+    display: flex;
+  }
+
+  .header__burger {
+    display: flex;
+  }
+} 
+.header {
+  padding: 8px 0;
+  background-color: var(--backColor);
+  margin-bottom: 41px;
+}
+
+.header__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  column-gap: 11px;
+  margin-right: 54px;
+}
+
+.header__list {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 20px;
+  align-self: center;
+}
+
+.header__list a {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  color: #191919;
+  transition: color 0.2s ease;
+}
+
+.header__list a:hover {
+  color: var(--accentColor);
+}
+
+.header__buttons {
+  display: flex;
+  align-items: center;
+}
+
+.header__entr {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 110%;
+  text-align: center;
+  color: var(--accentColor);
+  margin-right: 28px;
+}
+
+.header__reg {
+  cursor: pointer;
+  padding: 11.5px 28.5px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 100%;
+  background-color: var(--accentColor);
+  color: white;
+  border-radius: 12px;
+  border: none;
+  transition: opacity 0.2s ease;
+}
+
+.header__reg:hover {
+  opacity: 0.9;
+}
+
+.header {
+  padding: 8px 0;
+  background-color: var(--backColor);
+  margin-bottom: 41px;
+}
+
+.header__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  column-gap: 11px;
+  margin-right: 54px;
+}
+
+.header__list {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 20px;
+  align-self: center;
+}
+
+.header__list a {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  color: #191919;
+  transition: color 0.2s ease;
+}
+
+.header__list a:hover {
+  color: var(--accentColor);
+}
+
+.header__buttons {
+  display: flex;
+  align-items: center;
+}
+
+.header__entr {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 110%;
+  text-align: center;
+  color: var(--accentColor);
+  margin-right: 28px;
+}
+
+.header__reg {
+  cursor: pointer;
+  padding: 11.5px 28.5px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 100%;
+  background-color: var(--accentColor);
+  color: white;
+  border-radius: 12px;
+  border: none;
+  transition: opacity 0.2s ease;
+}
+
+.header__reg:hover {
+  opacity: 0.9;
+}
+
+
+
+/* Элементы планшета по умолчанию скрыты на десктопе */
+.header {
+  padding: 8px 0;
+  background-color: var(--backColor);
+  margin-bottom: 41px;
+}
+
+.header__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  column-gap: 11px;
+  margin-right: 54px;
+}
+
+.header__list {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 20px;
+  align-self: center;
+}
+
+.header__list a {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  color: #191919;
+  transition: color 0.2s ease;
+}
+
+.header__list a:hover {
+  color: var(--accentColor);
+}
+
+.header__buttons {
+  display: flex;
+  align-items: center;
+}
+
+.header__entr {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 110%;
+  text-align: center;
+  color: var(--accentColor);
+  margin-right: 28px;
+}
+
+.header__reg {
+  cursor: pointer;
+  padding: 11.5px 28.5px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 100%;
+  background-color: var(--accentColor);
+  color: white;
+  border-radius: 12px;
+  border: none;
+  transition: opacity 0.2s ease;
+}
+
+.header__reg:hover {
+  opacity: 0.9;
+}
+
+.header__tablet-nav {
+  display: none;
+}
+
+.header__burger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.header__burger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #191919;
+  border-radius: 2px;
+}
+
+/* ================= АДАПТИВ (ПЛАНШЕТ И МОБИЛЬНЫЕ) ================= */
+@media (max-width: 768px) {
+  .header {
+    margin-bottom: 24px;
+  }
+  .header__left {
+    display: flex;
+  }
+
+  /* Сбрасываем жесткий правый отступ десктопного логотипа */
+  .header__logo {
+    margin-right: 0;
+  }
+  .header__logo-title {
+    display: none;
+  }
+
+  /* Прячем длинные ссылки и кнопки входа */
+  .header__list,
+  .header__buttons {
+    display: none;
+  }
+
+  /* Показываем выпадающий список «Подготовка» и прижимаем бургер вправо */
+  .header__tablet-nav {
+    display: flex;
+    align-items: center;
+    margin-right: auto; /* выталкивает бургер в правый угол */
+    margin-left: 28px; /* аккуратный отступ от логотипа Yeahub */
+  }
+
+  /* Показываем бургер */
+  .header__burger {
+    display: flex;
+  }
+}
