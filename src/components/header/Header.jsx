@@ -3,13 +3,8 @@ import logo from "../../assets/logo.png";
 import yeahub from "../../assets/yeahub.png";
 import "./header.css";
 import NavDropdown from "./NavDropdown";
-
-const PREPARATION_LINKS = [
-  { label: "База вопросов", href: "#!" },
-  { label: "Тренажер", href: "#!" },
-  { label: "Материалы", href: "#!" },
-  { label: "Навыки (hh)", href: "#!" },
-];
+import { PREPARATION_LINKS } from "../../constants/constants";
+import menu from "../../assets/menu.png";
 
 export default function Header() {
   return (
@@ -44,11 +39,7 @@ export default function Header() {
             </a>
             <button className="header__reg">Регистрация</button>
           </div>
-          <button type="button" className="header__burger">
-            <span />
-            <span />
-            <span />
-          </button>
+          <img className="header__burger" src={menu} alt="меню" />
         </div>
       </div>
     </header>

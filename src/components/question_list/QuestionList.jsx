@@ -2,6 +2,14 @@ import QuestionItem from "./QuestionItem";
 import "./question_list.css";
 
 export default function QuestionList({ questions }) {
+  if (!questions || !Array.isArray(questions)) {
+    return (
+      <div className="questions-list questions-list--empty">
+        <p className="questions-empty-text">Нет данных</p>
+      </div>
+    );
+  }
+
   if (questions.length === 0) {
     return (
       <div className="questions-list questions-list--empty">

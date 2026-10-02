@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import arrowIcon from "../../assets/arrow_down.png";
 import "./nav_dropdown.css";
 

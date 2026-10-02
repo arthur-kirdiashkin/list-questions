@@ -1,19 +1,6 @@
-import React from "react";
 import "./footer.css";
-import figma from "../../assets/figma.png";
-import gitHub from "../../assets/gitHub.png";
-import telegram from "../../assets/telegram.png";
-import tic from "../../assets/tic.png";
-import youtube from "../../assets/youtube.png";
 import yeahub from "../../assets/yeahub.png";
-
-const SOCIALS = [
-  { id: "figma", icon: figma, alt: "Figma" },
-  { id: "github", icon: gitHub, alt: "GitHub" },
-  { id: "telegram", icon: telegram, alt: "Telegram" },
-  { id: "tiktok", icon: tic, alt: "TikTok" },
-  { id: "youtube", icon: youtube, alt: "YouTube" },
-];
+import { SOCIALS } from "../../constants/constants";
 
 export default function Footer() {
   return (

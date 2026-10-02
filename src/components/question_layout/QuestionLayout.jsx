@@ -20,9 +20,9 @@ export default function QuestionLayout() {
   useEffect(() => {
     const fetchSpecializations = async () => {
       try {
-        const data = await getSpecializations();
+        const { data } = await getSpecializations();
 
-        setSpecializations(data.data || []);
+        setSpecializations(data || []);
       } catch (error) {
         console.error("Ошибка загрузки специализаций:", error);
       }
@@ -40,17 +40,19 @@ export default function QuestionLayout() {
     const fetchQuestions = async () => {
       setLoading(true);
       try {
-        const data = await getQuestions({
+        const { data, total } = await getQuestions({
           page: currentPage,
           limit: LIMIT,
           filters,
         });
 
-        setTotalPages(Math.ceil(data.total / LIMIT));
+        setTotalPages(Math.ceil((total || 0) / LIMIT));
 
-        setQuestions(data.data);
+        setQuestions(data || []);
       } catch (error) {
         console.error("Ошибка при загрузке вопросов:", error);
+        setQuestions([]);
+        setTotalPages(0);
       } finally {
         setLoading(false);
       }
@@ -70,12 +72,13 @@ export default function QuestionLayout() {
           <div className="questions-column">
             <div className="questions-header">
               <h1 className="questions-title">{pageTitle}</h1>
-              <div
+
+              <img
                 onClick={() => setOpenFilter(true)}
                 className="questions-filter"
-              >
-                <img src={filter} alt="" />
-              </div>
+                src={filter}
+                alt="Фильтр"
+              />
             </div>
             {loading ? <Spinner /> : <QuestionList questions={questions} />}
             {totalPages > 1 && (

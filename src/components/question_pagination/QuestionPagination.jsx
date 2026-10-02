@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 import arrowLeft from "./../../assets/arrow_left.png";
 import arrowRight from "./../../assets/arrow_right.png";
 import "./question_pagination.css";
@@ -43,7 +41,7 @@ export default function QuestionPagination({
   return (
     <div className="pagination-container">
       <img
-        onClick={() => onPageChange(currentPage - 1)}
+        onClick={currentPage > 1 ? () => onPageChange(currentPage - 1) : null}
         className="pagination-btn"
         src={arrowLeft}
         alt="Стрелка влево"
@@ -75,7 +73,11 @@ export default function QuestionPagination({
       </div>
 
       <img
-        onClick={() => onPageChange(currentPage + 1)}
+        onClick={
+          currentPage !== totalPages
+            ? () => onPageChange(currentPage + 1)
+            : null
+        }
         className="pagination-btn"
         src={arrowRight}
         alt="Стрелка вправо"

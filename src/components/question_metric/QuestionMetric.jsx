@@ -1,5 +1,3 @@
-import React from "react";
-
 import "./question_metric.css";
 
 export default function QuestionMetric({ label, value }) {

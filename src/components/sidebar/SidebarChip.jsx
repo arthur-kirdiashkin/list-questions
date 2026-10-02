@@ -1,9 +1,6 @@
-import React, { useState } from "react";
 import "./sidebar_chip.css";
 
-export default function SidebarChip({ onClick, img, value, isActive }) {
-  const [hasError, setHasError] = useState(false);
-
+export default function SidebarChip({ onClick, value, isActive }) {
   return (
     <div
       onClick={onClick}
