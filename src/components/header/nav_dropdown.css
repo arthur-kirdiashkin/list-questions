@@ -52,9 +52,6 @@
   font-weight: 500;
   color: var(--textColor);
   text-decoration: none;
-  transition:
-    background-color 0.15s ease,
-    color 0.15s ease;
 }
 
 .nav-dropdown__link:hover {

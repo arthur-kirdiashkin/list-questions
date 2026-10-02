@@ -1,0 +1,59 @@
+import React from "react";
+import "./footer.css";
+import figma from "../../assets/figma.png";
+import gitHub from "../../assets/gitHub.png";
+import telegram from "../../assets/telegram.png";
+import tic from "../../assets/tic.png";
+import youtube from "../../assets/youtube.png";
+import yeahub from "../../assets/yeahub.png";
+
+const SOCIALS = [
+  { id: "figma", icon: figma, alt: "Figma" },
+  { id: "github", icon: gitHub, alt: "GitHub" },
+  { id: "telegram", icon: telegram, alt: "Telegram" },
+  { id: "tiktok", icon: tic, alt: "TikTok" },
+  { id: "youtube", icon: youtube, alt: "YouTube" },
+];
+
+export default function Footer() {
+  return (
+    <footer>
+      <div className="footer">
+        <div className="container">
+          <img className="footer__title" src={yeahub} alt="Заголовок" />
+          <p className="footer__subtitle">
+            Выбери, каким будет IT завтра, вместе с нами
+          </p>
+          <p className="footer__desc">
+            YeaHub — это полностью открытый проект, призванный объединить
+            и улучшить IT-сферу. Наш исходный код доступен для просмотра
+            на GitHub. Дизайн проекта также открыт для ознакомления в Figma.
+          </p>
+          <hr className="footer__hr" />
+          <div className="footer-info">
+            <div className="footer__links">
+              <span className="footer__copyright">© 2024 YeaHub</span>
+              <a href="#!" className="footer__doc-link">
+                Документы
+              </a>
+            </div>
+            <div className="footer-wrapper">
+              <p className="footer__social-label">
+                Ищите нас и в других соцсетях @yeahub_it
+              </p>
+              <ul className="footer__social-list">
+                {SOCIALS.map((item) => (
+                  <li key={item.id} className="footer__social-item">
+                    <a href="#!" className="footer__social-link">
+                      <img src={item.icon} alt={item.alt} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
