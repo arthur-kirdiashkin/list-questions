@@ -63,7 +63,7 @@
   line-height: 127%;
   color: #8c8c8c;
 }
-@media (max-width: 360px) {
+@media (max-width: 425px) {
   .footer-info {
     position: relative;
     padding-bottom: 28px;
