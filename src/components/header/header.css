@@ -1,6 +1,6 @@
 .header {
   padding: 8px 0;
-  background-color: var(--backColor);
+  background-color: #ffffff;
   margin-bottom: 41px;
 }
 
@@ -34,7 +34,7 @@
 }
 
 .header__list a:hover {
-  color: var(--accentColor);
+  color: #6a0bff;
 }
 
 .header__buttons {
@@ -47,7 +47,7 @@
   font-size: 16px;
   line-height: 110%;
   text-align: center;
-  color: var(--accentColor);
+  color: #6a0bff;
   margin-right: 28px;
 }
 
@@ -57,7 +57,7 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 100%;
-  background-color: var(--accentColor);
+  background-color: #6a0bff;
   color: white;
   border-radius: 12px;
   border: none;

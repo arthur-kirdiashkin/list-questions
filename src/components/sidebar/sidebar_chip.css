@@ -17,9 +17,9 @@
   line-height: 120%;
 }
 .selected {
-  border: 1px solid var(--accentColor);
+  border: 1px solid #6a0bff;
 }
 .sidebar-chip:hover {
-  background-color: var(--accentColor);
-  color: var(--backColor);
+  background-color: #6a0bff;
+  color: #ffffff;
 }

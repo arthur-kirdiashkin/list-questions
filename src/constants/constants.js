@@ -1,5 +1,5 @@
 import figma from "../assets/figma.png";
-import gitHub from "../assets/gitHub.png";
+import gitHub from "../assets/github.png";
 import telegram from "../assets/telegram.png";
 import tic from "../assets/tic.png";
 import youtube from "../assets/youtube.png";

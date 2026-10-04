@@ -1,6 +1,6 @@
 .pagination-btn {
   padding: 4px;
-  border: 1px solid var(--accentColor);
+  border: 1px solid #6a0bff;
   border-radius: 50%;
 }
 .pagination-container {
@@ -15,15 +15,15 @@
   align-items: center;
   justify-content: center;
   border: none;
-  background-color: var(--backColor);
+  background-color: #ffffff;
   font-weight: 500;
   font-size: 14px;
   line-height: 120%;
 }
 .selected-btn {
-  background-color: var(--accentColor);
+  background-color: #6a0bff;
   border-radius: 2px;
-  color: var(--backColor);
+  color: #ffffff;
 }
 .pagination-list {
   display: flex;

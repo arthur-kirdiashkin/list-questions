@@ -2,15 +2,17 @@ import axios from "axios";
 import { BASE_URL } from "../constants/api";
 
 export const getQuestions = async ({ page, limit, filters }) => {
+  const { spec, skills = [], levels = [], rates = [], search = "" } = filters;
+
   const response = await axios.get(`${BASE_URL}/questions/public-questions`, {
     params: {
       page,
       limit,
-      specializationId: filters.spec || undefined,
-      skills: filters.skills.length ? filters.skills : undefined,
-      complexity: filters.levels.length ? filters.levels : undefined,
-      rate: filters.rates.length ? filters.rates : undefined,
-      title: filters.search.trim() || undefined,
+      specializationId: spec || undefined,
+      skills: skills.length ? filters.skills : undefined,
+      complexity: levels.length ? filters.levels : undefined,
+      rate: rates.length ? filters.rates : undefined,
+      title: search.trim() || undefined,
     },
   });
 

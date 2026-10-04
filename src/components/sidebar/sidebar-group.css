@@ -20,7 +20,7 @@
   font-size: 14px;
   line-height: 100%;
   letter-spacing: 0%;
-  color: var(--accentColor);
+  color: #6a0bff;
   cursor: pointer;
 }
 .sidebar-group__btn:hover {

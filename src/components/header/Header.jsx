@@ -1,4 +1,3 @@
-import { useState } from "react";
 import logo from "../../assets/logo.png";
 import yeahub from "../../assets/yeahub.png";
 import "./header.css";

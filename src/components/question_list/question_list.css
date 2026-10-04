@@ -5,7 +5,7 @@
   width: 100%;
   padding: 24px 20px 0px;
   border-radius: 24px;
-  background-color: var(--backColor);
+  background-color: #ffffff;
 }
 .questions-list--empty {
   display: flex;
