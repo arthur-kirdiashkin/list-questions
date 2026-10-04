@@ -9,12 +9,12 @@ export default function Footer() {
         <div className="container">
           <img className="footer__title" src={yeahub} alt="Заголовок" />
           <p className="footer__subtitle">
-            Выбери, каким будет IT завтра, вместе с нами
+            Выбери, каким будет IT завтра, вместе с нами
           </p>
           <p className="footer__desc">
-            YeaHub — это полностью открытый проект, призванный объединить
-            и улучшить IT-сферу. Наш исходный код доступен для просмотра
-            на GitHub. Дизайн проекта также открыт для ознакомления в Figma.
+            YeaHub — это полностью открытый проект, призванный объединить и
+            улучшить IT- сферу. Наш исходный код доступен для просмотра на
+            GitHub. Дизайн проекта также открыт для ознакомления в Figma.
           </p>
           <hr className="footer__hr" />
           <div className="footer-info">
