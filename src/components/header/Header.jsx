@@ -26,9 +26,9 @@ export default function Header() {
           </div>
 
           <ul className="header__list">
-            {PREPARATION_LINKS.map((link) => (
-              <li key={link.label}>
-                <a href={link.href}>{link.label}</a>
+            {PREPARATION_LINKS.map(({ label, href }) => (
+              <li key={label}>
+                <a href={href}>{label}</a>
               </li>
             ))}
           </ul>
