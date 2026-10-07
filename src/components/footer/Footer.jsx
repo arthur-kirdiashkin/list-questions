@@ -29,10 +29,10 @@ export default function Footer() {
                 Ищите нас и в других соцсетях @yeahub_it
               </p>
               <ul className="footer__social-list">
-                {SOCIALS.map((item) => (
-                  <li key={item.id} className="footer__social-item">
+                {SOCIALS.map(({ id, icon, alt }) => (
+                  <li key={id} className="footer__social-item">
                     <a href="#!" className="footer__social-link">
-                      <img src={item.icon} alt={item.alt} />
+                      <img src={icon} alt={alt} />
                     </a>
                   </li>
                 ))}

@@ -1,6 +1,4 @@
 .footer {
-  display: flex;
-  flex-wrap: wrap;
   background-color: #18003e;
   padding-top: 30px;
   padding-bottom: 18px;
@@ -21,7 +19,6 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 127%;
-  letter-spacing: 0%;
   color: #8c8c8c;
   margin-bottom: 35px;
 }
@@ -35,6 +32,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
 }
 .footer__links {
   display: flex;
@@ -58,7 +56,6 @@
 .footer__copyright,
 .footer__doc-link,
 .footer__social-label {
-  font-weight: 400;
   font-size: 14px;
   line-height: 127%;
   color: #8c8c8c;
