@@ -38,10 +38,18 @@ export default function QuestionPagination({
 
   const pages = getPaginationPages(currentPage, totalPages);
 
+  const handlePrevPageClick = () => {
+    onPageChange((prev) => (prev > 1 ? prev - 1 : prev));
+  };
+
+  const handleNextPageClick = () => {
+    onPageChange((prev) => (prev < totalPages ? prev + 1 : prev));
+  };
+
   return (
     <div className="pagination-container">
       <img
-        onClick={currentPage > 1 ? () => onPageChange(currentPage - 1) : null}
+        onClick={handlePrevPageClick}
         className="pagination-btn"
         src={arrowLeft}
         alt="Стрелка влево"
@@ -73,11 +81,7 @@ export default function QuestionPagination({
       </div>
 
       <img
-        onClick={
-          currentPage !== totalPages
-            ? () => onPageChange(currentPage + 1)
-            : null
-        }
+        onClick={handleNextPageClick}
         className="pagination-btn"
         src={arrowRight}
         alt="Стрелка вправо"

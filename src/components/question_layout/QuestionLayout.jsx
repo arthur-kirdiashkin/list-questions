@@ -85,7 +85,7 @@ export default function QuestionLayout() {
               <QuestionPagination
                 currentPage={currentPage}
                 totalPages={totalPages}
-                onPageChange={(page) => setCurrentPage(page)}
+                onPageChange={setCurrentPage}
               />
             )}
           </div>
