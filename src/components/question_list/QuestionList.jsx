@@ -22,14 +22,14 @@ export default function QuestionList({ questions }) {
 
   return (
     <div className="questions-list">
-      {questions.map((question) => (
+      {questions.map(({id, title, shortAnswer, complexity, rate, imgSrc}) => (
         <QuestionItem
-          key={question.id}
-          title={question.title}
-          content={question.shortAnswer}
-          complexity={question.complexity}
-          rate={question.rate}
-          imgSrc={question.imgSrc}
+          key={id}
+          title={title}
+          content={shortAnswer}
+          complexity={complexity}
+          rate={rate}
+          imgSrc={imgSrc}
         />
       ))}
     </div>
