@@ -1,11 +1,16 @@
 import "./question_item.css";
 
 import arrowDown from "./../../assets/arrow_down.png";
+import arrowRight from "./../../assets/arrow_right.png";
 import arrowUpp from "./../../assets/arrow_upp.png";
 import QuestionMetric from "../question_metric/QuestionMetric";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function QuestionItem({
+  filters,
+  questions,
+  id,
   title,
   content,
   rate,
@@ -48,6 +53,14 @@ export default function QuestionItem({
             className="question-text"
             dangerouslySetInnerHTML={{ __html: content }}
           ></div>
+          <Link
+            className="question__action"
+            to={`/questions/${id}`}
+            state={{ questions, currentFilters: filters }}
+          >
+            <span className="question__button">Подробнее</span>
+            <img src={arrowRight} alt="Стрелка вправо" />
+          </Link>
         </div>
       )}
     </div>

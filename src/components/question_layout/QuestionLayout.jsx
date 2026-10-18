@@ -7,10 +7,19 @@ import QuestionPagination from "../question_pagination/QuestionPagination";
 import Spinner from "../spinner/Spinner";
 import { getQuestions, getSpecializations } from "../../api/requests";
 import filter from "../../assets/filter.png";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 export default function QuestionLayout() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchParam = searchParams.get("search") || "";
+
   const [questions, setQuestions] = useState([]);
-  const [filters, setFilters] = useState(INITIAL_FILTERS);
+  const location = useLocation();
+  const [filters, setFilters] = useState({
+    ...INITIAL_FILTERS,
+    ...(location.state?.currentFilters ?? {}),
+    search: searchParam,
+  });
   const [totalPages, setTotalPages] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -31,7 +40,17 @@ export default function QuestionLayout() {
     fetchSpecializations();
   }, []);
 
+  useEffect(() => {
+    setFilters((prev) => ({ ...prev, search: searchParam }));
+  }, [searchParam]);
+
   const updateFilter = (key, value) => {
+    if (key === "search") {
+      searchParams.set(key, value);
+    } else {
+      searchParams.delete(key);
+    }
+    setSearchParams(searchParams);
     setFilters((prev) => ({ ...prev, [key]: value }));
     setCurrentPage(1);
   };
@@ -59,7 +78,7 @@ export default function QuestionLayout() {
     };
 
     fetchQuestions();
-  }, [filters, currentPage]);
+  }, [filters, currentPage, searchParam]);
 
   const currentSpec = specializations.find((spec) => spec.id === filters.spec);
 
@@ -80,7 +99,11 @@ export default function QuestionLayout() {
                 alt="Фильтр"
               />
             </div>
-            {loading ? <Spinner /> : <QuestionList questions={questions} />}
+            {loading ? (
+              <Spinner />
+            ) : (
+              <QuestionList questions={questions} filters={filters} />
+            )}
             {totalPages > 1 && (
               <QuestionPagination
                 currentPage={currentPage}

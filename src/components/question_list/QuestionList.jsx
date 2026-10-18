@@ -1,7 +1,7 @@
 import QuestionItem from "./QuestionItem";
 import "./question_list.css";
 
-export default function QuestionList({ questions }) {
+export default function QuestionList({ questions, filters }) {
   if (!questions || !Array.isArray(questions)) {
     return (
       <div className="questions-list questions-list--empty">
@@ -22,9 +22,12 @@ export default function QuestionList({ questions }) {
 
   return (
     <div className="questions-list">
-      {questions.map(({id, title, shortAnswer, complexity, rate, imgSrc}) => (
+      {questions.map(({ id, title, shortAnswer, complexity, rate, imgSrc }) => (
         <QuestionItem
+          filters={filters}
           key={id}
+          questions={questions}
+          id={id}
           title={title}
           content={shortAnswer}
           complexity={complexity}

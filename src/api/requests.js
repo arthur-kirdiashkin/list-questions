@@ -35,3 +35,11 @@ export const getSkills = async ({ specializationId, limit = 50 }) => {
 
   return response.data;
 };
+
+export const getQuestion = async (id) => {
+  const response = await axios.get(
+    `${BASE_URL}/questions/public-questions/${id}`,
+  );
+
+  return response.data;
+};

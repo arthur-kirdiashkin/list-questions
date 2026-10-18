@@ -1,15 +1,8 @@
-import Footer from "./components/footer/Footer";
-import Header from "./components/header/Header";
-import QuestionLayout from "./components/question_layout/QuestionLayout";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./router";
 
 function App() {
-  return (
-    <>
-      <Header />
-      <QuestionLayout />
-      <Footer />
-    </>
-  );
+  return <RouterProvider router={router}></RouterProvider>;
 }
 
 export default App;

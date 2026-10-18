@@ -12,7 +12,6 @@ export default function QuestionPagination({
       return Array.from({ length: totalPages }, (_, i) => i + 1);
     }
     if (currentPage < 5) {
-      console.log("total pages in", totalPages);
       return [...Array.from({ length: 6 }, (_, i) => i + 1), "...", totalPages];
     }
 
