@@ -2,7 +2,7 @@ import axios from "axios";
 import { BASE_URL } from "../constants/api";
 import { COMPLEXITY_OPTIONS } from "../constants/constants";
 
-export const getQuestions = async ({ page, limit, filters }) => {
+export const getQuestions = async ({ page, limit, filters, signal }) => {
   const { spec, skills = [], levels = [], rates = [], search = "" } = filters;
 
   const levelValues = levels.reduce((acc, value) => {
@@ -14,6 +14,7 @@ export const getQuestions = async ({ page, limit, filters }) => {
   }, []);
 
   const response = await axios.get(`${BASE_URL}/questions/public-questions`, {
+    signal,
     params: {
       page,
       limit,
@@ -34,8 +35,9 @@ export const getSpecializations = async () => {
   return response.data;
 };
 
-export const getSkills = async ({ specializationId, limit = 50 }) => {
+export const getSkills = async ({ specializationId, limit = 50, signal }) => {
   const response = await axios.get(`${BASE_URL}/skills`, {
+    signal,
     params: {
       limit,
       specializations: specializationId || undefined,

@@ -8,6 +8,7 @@ import Spinner from "../spinner/Spinner";
 import { getQuestions, getSpecializations } from "../../api/requests";
 import filter from "../../assets/filter.png";
 import { useSearchParams } from "react-router-dom";
+import axios from "axios";
 
 export default function QuestionLayout() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -51,34 +52,34 @@ export default function QuestionLayout() {
     fetchSpecializations();
   }, []);
 
-  const updateFilter = (key, value) => {
+  const updateFilter = (newParams) => {
     setSearchParams((prev) => {
       const params = new URLSearchParams(prev);
 
-      if (key === "spec") {
-        params.delete("skills");
-      }
+      Object.entries(newParams).forEach(([key, value]) => {
+        const isEmpty =
+          value === "" || (Array.isArray(value) && value.length === 0);
 
-      const isEmpty =
-        value === "" || (Array.isArray(value) && value.length === 0);
-
-      if (isEmpty) {
-        params.delete(key);
-      } else {
-        params.set(key, value);
-      }
+        if (isEmpty) {
+          params.delete(key);
+        } else {
+          params.set(key, value);
+        }
+      });
 
       return params;
     });
+
     setFilters((prev) => ({
       ...prev,
-      [key]: value,
-      ...(key === "spec" ? { skills: [] } : {}),
+      ...newParams,
     }));
     setCurrentPage(1);
   };
 
   useEffect(() => {
+    const controller = new AbortController();
+
     const fetchQuestions = async () => {
       setLoading(true);
       try {
@@ -86,21 +87,33 @@ export default function QuestionLayout() {
           page: currentPage,
           limit: LIMIT,
           filters,
+          signal: controller.signal,
         });
 
         setTotalPages(Math.ceil((total || 0) / LIMIT));
 
         setQuestions(data || []);
       } catch (error) {
+        if (axios.isCancel(error)) {
+          console.log("Запрос отменен");
+          return;
+        }
         console.error("Ошибка при загрузке вопросов:", error);
+
         setQuestions([]);
         setTotalPages(0);
       } finally {
-        setLoading(false);
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
       }
     };
 
     fetchQuestions();
+
+    return () => {
+      controller.abort();
+    };
   }, [filters, currentPage]);
 
   const currentSpec = specializations.find((spec) => spec.id === filters.spec);
