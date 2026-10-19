@@ -21,8 +21,6 @@ export default function QuestionPage() {
 
   const questions = location.state?.questions || [];
 
-  const currentFilters = location.state?.currentFilters || [];
-
   const currentId = Number(questionId);
 
   const [loading, setLoading] = useState(true);
@@ -58,7 +56,7 @@ export default function QuestionPage() {
     if (currentIndex !== -1) {
       const nextId = questions[currentIndex + 1].id;
       navigate(`/questions/${Number(nextId)}`, {
-        state: { questions, currentFilters },
+        state: { questions },
       });
     }
   };
@@ -70,7 +68,7 @@ export default function QuestionPage() {
     if (currentIndex !== -1) {
       const prevId = questions[currentIndex - 1].id;
       navigate(`/questions/${Number(prevId)}`, {
-        state: { questions, currentFilters },
+        state: { questions },
       });
     }
   };
@@ -95,12 +93,7 @@ export default function QuestionPage() {
     <div className="container">
       <div className="question-layout">
         <div className="question_col">
-          <Link
-            className="question-back"
-            to={"/questions"}
-            state={{ currentFilters }}
-            replace
-          >
+          <Link className="question-back" to={"/questions"} replace>
             <img
               className="question-back__icon"
               src={caretLeft}
@@ -151,7 +144,6 @@ export default function QuestionPage() {
           handleClose={() => setIsOpen(false)}
           isOpen={isOpen}
           createdBy={createdBy}
-          currentFilters={currentFilters}
           rate={rate}
           complexity={complexity}
           questionSkills={questionSkills}

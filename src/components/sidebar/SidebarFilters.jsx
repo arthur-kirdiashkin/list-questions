@@ -30,10 +30,7 @@ export default function SidebarFilters({
       <SidebarGroup
         items={specializations}
         selected={filters.spec}
-        onSelected={(e) => {
-          onUpdateFilter("skills", []);
-          onUpdateFilter("spec", e);
-        }}
+        onSelected={(e) => onUpdateFilter("spec", e)}
         title="Специализация"
       />
       <SidebarGroup

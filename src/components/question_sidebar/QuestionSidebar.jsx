@@ -11,21 +11,25 @@ export default function QuestionSidebar({
   questionSkills,
   keywords,
   createdBy,
-  currentFilters,
   isOpen,
   handleClose,
 }) {
   const navigate = useNavigate();
 
   const handleSearch = (key) => {
-    navigate(`/questions?search=${key}`, { state: { currentFilters } });
+    navigate(`/questions?search=${key}`);
   };
 
   return (
     <aside
       className={`question-sidebar ${isOpen ? "question-sidebar--open" : ""}`}
     >
-      <img onClick={handleClose} className="close-btn" src={close} alt="Закрыть" />
+      <img
+        onClick={handleClose}
+        className="close-btn"
+        src={close}
+        alt="Закрыть"
+      />
       <section className="question-levels">
         <p className="question-info__title">Уровень:</p>
         <div className="question-info">

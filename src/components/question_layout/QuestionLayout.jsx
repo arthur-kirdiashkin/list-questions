@@ -2,22 +2,33 @@ import { useEffect, useState } from "react";
 import QuestionList from "../question_list/QuestionList";
 import Sidebar from "../sidebar/Sidebar";
 import "./question_layout.css";
-import { INITIAL_FILTERS, LIMIT } from "../../constants/constants";
+import { LIMIT } from "../../constants/constants";
 import QuestionPagination from "../question_pagination/QuestionPagination";
 import Spinner from "../spinner/Spinner";
 import { getQuestions, getSpecializations } from "../../api/requests";
 import filter from "../../assets/filter.png";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 export default function QuestionLayout() {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchParam = searchParams.get("search") || "";
+  const specParam = searchParams.get("spec")
+    ? Number(searchParams.get("spec"))
+    : 11;
+  const levelParam = searchParams.get("levels")
+    ? searchParams.get("levels").split(",")
+    : [];
+  const skillsParam = searchParams.get("skills")
+    ? searchParams.get("skills").split(",")
+    : [];
+  const ratesParam = searchParams.get("rates") || [];
 
   const [questions, setQuestions] = useState([]);
-  const location = useLocation();
   const [filters, setFilters] = useState({
-    ...INITIAL_FILTERS,
-    ...(location.state?.currentFilters ?? {}),
+    rates: ratesParam,
+    spec: specParam,
+    skills: skillsParam,
+    levels: levelParam,
     search: searchParam,
   });
   const [totalPages, setTotalPages] = useState(null);
@@ -40,18 +51,30 @@ export default function QuestionLayout() {
     fetchSpecializations();
   }, []);
 
-  useEffect(() => {
-    setFilters((prev) => ({ ...prev, search: searchParam }));
-  }, [searchParam]);
-
   const updateFilter = (key, value) => {
-    if (key === "search") {
-      searchParams.set(key, value);
-    } else {
-      searchParams.delete(key);
-    }
-    setSearchParams(searchParams);
-    setFilters((prev) => ({ ...prev, [key]: value }));
+    setSearchParams((prev) => {
+      const params = new URLSearchParams(prev);
+
+      if (key === "spec") {
+        params.delete("skills");
+      }
+
+      const isEmpty =
+        value === "" || (Array.isArray(value) && value.length === 0);
+
+      if (isEmpty) {
+        params.delete(key);
+      } else {
+        params.set(key, value);
+      }
+
+      return params;
+    });
+    setFilters((prev) => ({
+      ...prev,
+      [key]: value,
+      ...(key === "spec" ? { skills: [] } : {}),
+    }));
     setCurrentPage(1);
   };
 
@@ -78,7 +101,7 @@ export default function QuestionLayout() {
     };
 
     fetchQuestions();
-  }, [filters, currentPage, searchParam]);
+  }, [filters, currentPage]);
 
   const currentSpec = specializations.find((spec) => spec.id === filters.spec);
 
