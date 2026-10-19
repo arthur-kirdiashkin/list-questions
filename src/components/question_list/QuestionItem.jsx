@@ -1,5 +1,5 @@
 import "./question_item.css";
-
+import DOMPurify from "dompurify";
 import arrowDown from "./../../assets/arrow_down.png";
 import arrowRight from "./../../assets/arrow_right.png";
 import arrowUpp from "./../../assets/arrow_upp.png";
@@ -22,6 +22,8 @@ export default function QuestionItem({
   const onQuestionClick = () => {
     setIsActive((prev) => !prev);
   };
+
+  const cleanContent = DOMPurify.sanitize(content || "");
 
   return (
     <div className="question-item" key={title}>
@@ -51,7 +53,7 @@ export default function QuestionItem({
           )}
           <div
             className="question-text"
-            dangerouslySetInnerHTML={{ __html: content }}
+            dangerouslySetInnerHTML={{ __html: cleanContent }}
           ></div>
           <Link
             className="question__action"
