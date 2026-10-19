@@ -32,7 +32,18 @@ export const getQuestions = async ({ page, limit, filters, signal }) => {
 export const getSpecializations = async () => {
   const response = await axios.get(`${BASE_URL}/specializations`);
 
-  return response.data;
+  const total = response.data.total || 0;
+  const data = response.data.data || [];
+
+  if (total <= data.length) {
+    return response.data;
+  }
+
+  const fullResponse = await axios.get(`${BASE_URL}/specializations`, {
+    params: { limit: total },
+  });
+
+  return fullResponse.data;
 };
 
 export const getSkills = async ({ specializationId, limit = 50, signal }) => {
