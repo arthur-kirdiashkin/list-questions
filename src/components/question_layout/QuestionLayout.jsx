@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import QuestionList from "../question_list/QuestionList";
 import Sidebar from "../sidebar/Sidebar";
 import "./question_layout.css";
@@ -37,6 +37,8 @@ export default function QuestionLayout() {
   const [loading, setLoading] = useState(true);
   const [specializations, setSpecializations] = useState([]);
   const [openFilter, setOpenFilter] = useState(false);
+  const [error, setError] = useState("");
+  const controllerRef = useRef(null);
 
   useEffect(() => {
     const fetchSpecializations = async () => {
@@ -77,42 +79,51 @@ export default function QuestionLayout() {
     setCurrentPage(1);
   };
 
-  useEffect(() => {
+  const fetchQuestions = async () => {
+    if (controllerRef.current) {
+      controllerRef.current.abort();
+    }
+
     const controller = new AbortController();
 
-    const fetchQuestions = async () => {
-      setLoading(true);
-      try {
-        const { data, total } = await getQuestions({
-          page: currentPage,
-          limit: LIMIT,
-          filters,
-          signal: controller.signal,
-        });
+    controllerRef.current = controller;
 
-        setTotalPages(Math.ceil((total || 0) / LIMIT));
+    setError("");
 
-        setQuestions(data || []);
-      } catch (error) {
-        if (axios.isCancel(error)) {
-          console.log("Запрос отменен");
-          return;
-        }
-        console.error("Ошибка при загрузке вопросов:", error);
+    setLoading(true);
+    try {
+      const { data, total } = await getQuestions({
+        page: currentPage,
+        limit: LIMIT,
+        filters,
+        signal: controller.signal,
+      });
 
-        setQuestions([]);
-        setTotalPages(0);
-      } finally {
-        if (!controller.signal.aborted) {
-          setLoading(false);
-        }
+      setTotalPages(Math.ceil((total || 0) / LIMIT));
+
+      setQuestions(data || []);
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        console.log("Запрос отменен");
+        return;
       }
-    };
+      console.error("Ошибка при загрузке вопросов:", error);
+      setError("Не удалось загрузить вопросы");
 
+      setQuestions([]);
+      setTotalPages(0);
+    } finally {
+      if (!controller.signal.aborted) {
+        setLoading(false);
+      }
+    }
+  };
+
+  useEffect(() => {
     fetchQuestions();
 
     return () => {
-      controller.abort();
+      controllerRef.current?.abort();
     };
   }, [filters, currentPage]);
 
@@ -135,17 +146,30 @@ export default function QuestionLayout() {
                 alt="Фильтр"
               />
             </div>
-            {loading ? (
-              <Spinner />
-            ) : (
-              <QuestionList questions={questions} filters={filters} />
+            {loading && <Spinner />}
+            {!loading && error && (
+              <div className="questions-error">
+                <p className="questions-error__text">{error}</p>
+                <button
+                  className="questions-error__btn"
+                  onClick={() => fetchQuestions()}
+                >
+                  Повторить попытку
+                </button>
+              </div>
             )}
-            {totalPages > 1 && (
-              <QuestionPagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={setCurrentPage}
-              />
+            {!loading && !error && (
+              <>
+                <QuestionList questions={questions} filters={filters} />
+
+                {totalPages > 1 && (
+                  <QuestionPagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={setCurrentPage}
+                  />
+                )}
+              </>
             )}
           </div>
 

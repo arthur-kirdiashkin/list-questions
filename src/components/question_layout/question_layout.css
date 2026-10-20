@@ -45,3 +45,27 @@
     font-size: 20px;
   }
 }
+.questions-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.questions-error__text {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 120%;
+  color: red;
+}
+.questions-error__btn {
+  cursor: pointer;
+  padding: 11.5px 28.5px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 100%;
+  background-color: #6a0bff;
+  color: white;
+  border-radius: 12px;
+  border: none;
+}
