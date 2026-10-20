@@ -15,7 +15,7 @@ export default function Sidebar({
       <img onClick={onClose} className="close-btn" src={close} alt="закрыть" />
       <SidebarSearch
         value={filters.search}
-        onChange={(e) => onUpdateFilter("search", e.target.value)}
+        onChange={(searchValue) => onUpdateFilter({ search: searchValue })}
       />
       <SidebarFilters
         specializations={specializations}
