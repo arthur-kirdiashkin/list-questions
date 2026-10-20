@@ -22,19 +22,21 @@ export default function QuestionList({ questions, filters }) {
 
   return (
     <div className="questions-list">
-      {questions.map(({ id, title, shortAnswer, complexity, rate, imgSrc }) => (
-        <QuestionItem
-          filters={filters}
-          key={id}
-          questions={questions}
-          id={id}
-          title={title}
-          content={shortAnswer}
-          complexity={complexity}
-          rate={rate}
-          imgSrc={imgSrc}
-        />
-      ))}
+      {questions.map(
+        ({ id, title, shortAnswer, complexity, rate, imageSrc }) => (
+          <QuestionItem
+            filters={filters}
+            key={id}
+            questions={questions}
+            id={id}
+            title={title}
+            content={shortAnswer}
+            complexity={complexity}
+            rate={rate}
+            imgSrc={imageSrc}
+          />
+        ),
+      )}
     </div>
   );
 }
