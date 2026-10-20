@@ -22,9 +22,10 @@ export default function NavDropdown({ title = "Подготовка", items = []
 
       {isOpen && (
         <ul className="nav-dropdown__menu">
-          {items.map((item, index) => (
-            <li key={index} className="nav-dropdown__item">
+          {items.map((item) => (
+            <li key={item.label} className="nav-dropdown__item">
               <a
+                href={item.href}
                 className="nav-dropdown__link"
                 onClick={() => setIsOpen(false)}
               >
